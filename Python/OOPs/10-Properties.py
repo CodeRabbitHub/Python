@@ -1,18 +1,35 @@
-class Product:
-    def __init__(self, price):
-        self.set_price(price)
-    
-    def get_price(self):
-        return self.__price
+class Employee:
 
-    def set_price(self, value):
-        if value < 0:
-            raise ValueError("Price cannot be negative")
-        self.__price = value
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
 
-    price = property()
+    @property
+    def email(self):
+        return f'{self.first}.{self.last}@email.com'
 
-product = Product(-50)
+    @property
+    def fullname(self):
+        return f'{self.first} {self.last}'
 
-        
-0
+    @fullname.setter
+    def fullname(self, name):
+        first, last = name.split(' ')
+        self.first = first
+        self.last = last
+
+    @fullname.deleter
+    def fullname(self):
+        print('Delete Name!')
+        self.first = None
+        self.last = None
+
+emp_1 = Employee('John', 'Woo')
+
+emp_1.fullname = 'Steve Jobs'
+
+print(emp_1.first)
+print(emp_1.email)
+print(emp_1.fullname)
+
+del emp_1.fullname
