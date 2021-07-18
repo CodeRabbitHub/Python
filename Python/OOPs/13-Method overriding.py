@@ -1,10 +1,11 @@
-class  Animal:
+class Animal:
     def __init__(self):
         print("Animal Constructor")
         self.age = 1
 
     def eat(self):
         print("eat")
+
 
 class Mammal(Animal):
     def __init__(self):
@@ -14,6 +15,7 @@ class Mammal(Animal):
 
     def walk(self):
         print("walk")
+
 
 m = Mammal()
 # print(m.age)

@@ -17,7 +17,8 @@ class TagCloud:
     def __iter__(self):
         return iter(self.__tags)
 
+
 cloud = TagCloud()
-#print(cloud.__tags)
+# print(cloud.__tags)
 print(cloud.__dict__)
 print(cloud._TagCloud__tags)

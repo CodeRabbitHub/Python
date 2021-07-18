@@ -6,8 +6,9 @@ class Point:
     def __add__(self, other):
         return Point(self.x + other.x, self.y + other.y)
 
-point = Point(10,20)
-other = Point(1,2)
+
+point = Point(10, 20)
+other = Point(1, 2)
 combined = point + other
 
 print(combined.x)
