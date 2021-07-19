@@ -1,6 +1,3 @@
-from typing import AsyncContextManager
-
-
 first_name = "Michael"
 last_name = "Jackson"
 
