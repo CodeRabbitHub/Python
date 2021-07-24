@@ -5,6 +5,3 @@ def solution(nums, target):
         if complement in hashmap:
             return [hashmap[complement], idx]
         hashmap[num] = idx
-
-
-solution([1, 1], 2)
