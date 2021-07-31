@@ -1,7 +1,7 @@
 # Python
 
-This repository I've started while preparing for data science interviews. I'll keep updating it. The content will be mostly basic programming and data structures in python. 
-Advance data Structues and Algorithms which are asked for software engineering roles will not be included here.
+This repository I've started while preparing for data science interviews. I'll keep updating it. The content will be mostly python programming, data structures and algorithms in python.
 
-01. Leet code Problems on Python basic data structures. Mostly Arrays, Lists, Math's, Dictionaries and Dynamic Programming.
-02. Geek for Geeks Problems on Python basic data structures.
+01. General Python Programming
+02. Data Structues and Algorithms
+03. Solving Leetcode Problems in Python
