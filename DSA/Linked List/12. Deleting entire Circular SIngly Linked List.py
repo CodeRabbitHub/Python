@@ -88,7 +88,7 @@ class CSLinkedList:
                 else:
                     self.head = self.head.next
                     self.tail.next = self.head
-            elif location == 1:
+            elif location == -1:
                 if self.head == self.tail:
                     self.head.next = None
                     self.head = None
