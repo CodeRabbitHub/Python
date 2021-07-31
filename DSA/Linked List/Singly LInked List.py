@@ -9,6 +9,15 @@ class SLinkedList:
         self.head = None
         self.tail = None
 
+    def display(self):
+        if self.head is None:
+            return "EMPTY"
+        else:
+            temp = self.head
+            while temp:
+                print(temp.value, "->", end=" ")
+                temp = temp.next
+
 
 singlyLinkedList = SLinkedList()
 
@@ -33,5 +42,11 @@ singlyLinkedList.tail = node3
 print("\n")
 print(singlyLinkedList.head)
 print(singlyLinkedList.tail)
+
+print("\n")
+print(singlyLinkedList.head.value)
 print(singlyLinkedList.head.next.value)
 print(singlyLinkedList.head.next.next.value)
+
+print("\n")
+singlyLinkedList.display()
