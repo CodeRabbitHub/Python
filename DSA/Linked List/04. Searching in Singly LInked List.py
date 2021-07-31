@@ -16,7 +16,6 @@ class SLinkedList:
             node = node.next
 
     # Insert in Linked List
-
     def insertSLL(self, value, location):
         newNode = Node(value)
         if self.head is None:
@@ -41,7 +40,6 @@ class SLinkedList:
                 newNode.next = nextNode
 
     # Traverse Singly Linked List
-
     def traverseList(self):
         if self.head is None:
             print("The Singly Linked List does not exist")
@@ -52,7 +50,6 @@ class SLinkedList:
                 node = node.next
 
     # Search for a node in Singly Linked List
-
     def searchSLL(self, nodeValue):
         if self.head is None:
             print("The Singly Linked List does not exist")

@@ -16,7 +16,6 @@ class SLinkedList:
             node = node.next
 
     # Insert in Linked List
-
     def insertSLL(self, value, location):
         newNode = Node(value)
         if self.head is None:
