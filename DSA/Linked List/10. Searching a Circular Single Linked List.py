@@ -82,4 +82,6 @@ circularSLL.insertCSLL(2, -1)
 circularSLL.insertCSLL(3, 0)
 circularSLL.insertCSLL(7, 1)
 
-circularSLL.searchCSLL(3)
+print([node.value for node in circularSLL])
+print(circularSLL.searchCSLL(3))
+print(circularSLL.searchCSLL(31))
