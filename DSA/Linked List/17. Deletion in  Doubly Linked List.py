@@ -5,7 +5,7 @@ class Node:
         self.prev = None
 
 
-class DlinkedList:
+class DLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
@@ -114,7 +114,7 @@ class DlinkedList:
             print("The node has been successfully deleted")
 
 
-doublyLL = DlinkedList()
+doublyLL = DLinkedList()
 doublyLL.createDLL(3)
 doublyLL.insertDLL(0, 0)
 doublyLL.insertDLL(1, -1)

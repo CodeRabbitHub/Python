@@ -5,7 +5,7 @@ class Node:
         self.prev = None
 
 
-class DlinkedList:
+class DLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
@@ -26,5 +26,5 @@ class DlinkedList:
         return "The DLL is created Succesfully"
 
 
-doublyLL = DlinkedList()
+doublyLL = DLinkedList()
 print(doublyLL.createDLL(3))
