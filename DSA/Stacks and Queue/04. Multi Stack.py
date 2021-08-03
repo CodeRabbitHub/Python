@@ -1,42 +1,38 @@
-class Node:
-    def __init__(self, value=None):
-        self.value = value
-        self.next = None
+class MultiStack:
+    def __init__(self, stacksize):
+        self.numstacks = 3
+        self.array = [0] * (stacksize * self.numstacks)
+        self.sizes = [0] * self.numstacks
+        self.stacksize = stacksize
+
+    def Push(self, item, stacknum):
+        if self.IsFull(stacknum):
+            raise Exception("Stack is full")
+        self.sizes[stacknum] += 1
+        self.array[self.IndexOfTop(stacknum)] = item
+
+    def Pop(self, stacknum):
+        if self.IsEmpty(stacknum):
+            raise Exception("Stack is empty")
+        value = self.array[self.IndexOfTop(stacknum)]
+        self.array[self.IndexOfTop(stacknum)] = 0
+        self.sizes[stacknum] -= 1
+        return value
+
+    def Peek(self, stacknum):
+        if self.IsEmpty(stacknum):
+            raise Exception("Stack is empty")
+        return self.array[self.IndexOfTop(stacknum)]
+
+    def IsEmpty(self, stacknum):
+        return self.sizes[stacknum] == 0
+
+    def IsFull(self, stacknum):
+        return self.sizes[stacknum] == self.stacksize
+
+    def IndexOfTop(self, stacknum):
+        offset = stacknum * self.stacksize
+        return offset + self.sizes[stacknum] - 1
 
 
-class LinkedList:
-    def __init__(self):
-        self.head = None
-
-
-class Stack:
-    def __init__(self):
-        self.LinkedList = LinkedList()
-
-    def isEmpty(self):
-        if self.LinkedList.head is None:
-            return True
-        return False
-
-    def push(self, value):
-        node = Node(value)
-        node.next = self.LinkedList.head
-        self.LinkedList.head = node
-
-    def pop(self):
-        if self.isEmpty():
-            return "There is no element in the stack"
-        else:
-            nodeValue = self.LinkedList.head.value
-            self.LinkedList.head = self.LinkedList.head.next
-            return nodeValue
-
-    def peek(self):
-        if self.isEmpty():
-            return "There is not any element in the stack"
-        else:
-            nodeValue = self.LinkedList.head.value
-            return nodeValue
-
-    def delete(self):
-        self.LinkedList.head = None
+stack = MultiStack(1)
