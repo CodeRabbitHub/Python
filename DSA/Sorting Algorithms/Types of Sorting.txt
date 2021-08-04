@@ -19,5 +19,7 @@ Popular sorting techniques:
  + Bubble sort
  + Insertion sort
  + Selection sort
+ + Bucket sort
+ + Merge sort
  + Quick sort
  + Heap sort
