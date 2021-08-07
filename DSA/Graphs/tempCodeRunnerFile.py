@@ -16,7 +16,7 @@ class Graph:
             if i not in visited:
                 self.topologicalSortUtil(i, visited, stack)
 
-        stack.insert(0, vertex)
+        stack.append(vertex)
 
     def topologicalSort(self):
 
