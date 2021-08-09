@@ -1,5 +1,5 @@
 
-There are twor types of sorting:
+There are two types of sorting:
 
 Stable sort: If a sorting algorithm after sorting the contents
 does not change  the sequence of similar content in which they
