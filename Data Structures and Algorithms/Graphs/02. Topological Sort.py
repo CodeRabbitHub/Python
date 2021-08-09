@@ -27,7 +27,7 @@ class Graph:
             if k not in visited:
                 self.topologicalSortUtil(k, visited, stack)
 
-        print(stack[::-1])
+        print(stack)
 
 
 customGraph = Graph(8)
