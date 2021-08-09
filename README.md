@@ -1,6 +1,6 @@
 # Python
 
-I started this repository with an intention to revise upon all the programming concepts in python. I'll also add small and useful programms which i create along my Data Science Journey.
+I started this repository with an intention to revise upon all the programming concepts in python. I'll also add small and useful programmes which I create along my Data Science Journey.
 
 1. General Python Programming
 2. Data Structues and Algorithms
