@@ -4,16 +4,18 @@
 # and you may not use the same element twice.
 
 
-def solution(nums, target):
-    hashmap = {}
-    for idx, num in enumerate(nums):
-        complement = target - num
-        if complement in hashmap:
-            return [hashmap[complement], idx]
-        hashmap[num] = idx
+class Solution:
+    def twoSum(self, nums, target):
+        hashmap = {}
+        for idx, num in enumerate(nums):
+            complement = target - num
+            if complement in hashmap:
+                return [hashmap[complement], idx]
+            hashmap[num] = idx
 
 
 nums = [3, 9, 5, 1, 6, 11, 4]
 target = 17
 
-print(solution(nums, target))
+s = Solution()
+print(s.twoSum(nums, target))
