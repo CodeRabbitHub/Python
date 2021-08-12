@@ -14,8 +14,12 @@ class Solution:
             hashmap[num] = idx
 
 
-nums = [3, 9, 5, 1, 6, 11, 4]
-target = 17
+nums1, target1 = [2, 7, 11, 15], 9
+nums2, target2 = [3, 2, 4], 6
+nums3, target3 = [3, 3], 6
 
 s = Solution()
-print(s.twoSum(nums, target))
+
+print(s.twoSum(nums1, target1), end="\n")
+print(s.twoSum(nums2, target2), end="\n")
+print(s.twoSum(nums3, target3), end="\n")
