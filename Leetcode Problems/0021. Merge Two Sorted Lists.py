@@ -3,7 +3,7 @@
 
 
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=None, next=None):
         self.val = val
         self.next = next
 
@@ -24,4 +24,14 @@ class Solution:
         pointer.next = l1 or l2
         return head.next
 
-l1 = 
+
+l1 = ListNode(1, ListNode(2, ListNode(4)))
+l2 = ListNode(1, ListNode(3, ListNode(4)))
+
+
+s = Solution()
+result = s.mergeTwoLists(l1, l2)
+
+while result:
+    print(result.val)
+    result = result.next
