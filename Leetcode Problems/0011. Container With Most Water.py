@@ -29,6 +29,7 @@ height2 = [4, 3, 2, 1, 4]
 height3 = [1, 2, 1]
 
 s = Solution()
+
 print(s.maxArea(height1))
 print(s.maxArea(height2))
 print(s.maxArea(height3))

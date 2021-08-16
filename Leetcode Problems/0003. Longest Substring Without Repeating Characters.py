@@ -25,6 +25,7 @@ s3 = "pwwkew"
 s4 = ""
 
 s = Solution()
+
 print(s.lengthOfLongestSubstring(s1), end="\n")
 print(s.lengthOfLongestSubstring(s2), end="\n")
 print(s.lengthOfLongestSubstring(s3), end="\n")

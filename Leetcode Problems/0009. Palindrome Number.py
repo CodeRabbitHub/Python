@@ -1,3 +1,8 @@
+# Given an integer x, return true if x is palindrome integer.
+# An integer is a palindrome when it reads the same backward as forward.
+# For example, 121 is palindrome while 123 is not.
+
+
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         if x < 0:
@@ -17,3 +22,16 @@ class Solution:
             tempNumber = tempNumber // 10
 
         return newNumber
+
+
+s1 = 121
+s2 = -121
+s3 = 10
+s4 = 0
+
+s = Solution()
+
+print(s.isPalindrome(s1))
+print(s.isPalindrome(s2))
+print(s.isPalindrome(s3))
+print(s.isPalindrome(s4))

@@ -30,6 +30,7 @@ l2 = ListNode(1, ListNode(3, ListNode(4)))
 
 
 s = Solution()
+
 result = s.mergeTwoLists(l1, l2)
 
 while result:

@@ -10,5 +10,7 @@ class Solution:
 
 
 nums = [4, 1, 2, 1, 2]
+
 s = Solution()
+
 print(s.singleNumber(nums))
