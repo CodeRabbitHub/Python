@@ -13,7 +13,7 @@ class ListNode:
 
 class Solution:
     # Hash set  based solution
-    def hasCycle1(self, head: ListNode) -> bool:
+    def hasCycle(self, head: ListNode) -> bool:
         s = set()
         currNode = head
         while currNode:
