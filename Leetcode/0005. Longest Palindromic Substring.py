@@ -1,6 +1,3 @@
-# Given a string s, return the longest palindromic substring in s.
-
-
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         result = ""
@@ -23,16 +20,3 @@ class Solution:
                 left -= 1
                 right += 1
         return result
-
-
-s1 = "babad"
-s2 = "cbbd"
-s3 = "a"
-s4 = "ac"
-
-s = Solution()
-
-print(s.longestPalindrome(s1), end="\n")
-print(s.longestPalindrome(s2), end="\n")
-print(s.longestPalindrome(s3), end="\n")
-print(s.longestPalindrome(s4), end="\n")

@@ -1,8 +1,3 @@
-# Given a signed 32-bit integer x, return x with its digits reversed.
-# If reversing x causes the value to go outside the signed 32-bit
-# integer range [-2^31, 2^31 - 1], then return 0.
-
-
 class Solution:
     def reverse(self, x: int) -> int:
 
@@ -26,17 +21,3 @@ class Solution:
             return -1 * newNumber
         else:
             return newNumber
-
-
-s1 = 123
-s2 = -234
-s3 = 0
-s4 = 1534236469
-
-
-s = Solution()
-
-print(s.reverse(s1))
-print(s.reverse(s2))
-print(s.reverse(s3))
-print(s.reverse(s4))

@@ -1,7 +1,3 @@
-# Given an array of meeting time intervals intervals where intervals[i] = [starti, endi],
-# return the minimum number of conference rooms required.
-
-
 class Solution:
     def minMeetingRooms(self, intervals: list[list[int]]) -> int:
         start = sorted([i[0] for i in intervals])

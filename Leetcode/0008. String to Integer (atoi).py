@@ -1,7 +1,3 @@
-# Implement the myAtoi(string s) function, which converts a string
-# to a 32-bit signed integer (similar to C/C++'s atoi function).
-
-
 class Solution:
     def myAtoi(self, s: str) -> int:
 
@@ -53,18 +49,3 @@ class Solution:
         # For all other cases
         else:
             return 0
-
-
-s1 = "42"
-s2 = "   -42"
-s3 = "4193 with words"
-s4 = "words and 879"
-s5 = "-912834723324"
-
-s = Solution()
-
-print(s.myAtoi(s1))
-print(s.myAtoi(s2))
-print(s.myAtoi(s3))
-print(s.myAtoi(s4))
-print(s.myAtoi(s5))

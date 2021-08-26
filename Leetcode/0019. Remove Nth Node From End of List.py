@@ -1,6 +1,3 @@
-# Given the head of a linked list, remove the nth node from the end of the list and return its head.
-
-
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val

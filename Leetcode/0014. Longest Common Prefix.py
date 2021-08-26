@@ -1,8 +1,3 @@
-# Write a function to find the longest common prefix string
-# amongst an array of strings. If there is no common prefix,
-# return an empty string "".
-
-
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
         strs = sorted(strs, key=len)
@@ -25,12 +20,3 @@ class Solution:
             if char not in string[pos]:
                 return False
         return True
-
-
-s1 = ["flower", "flow", "flight"]
-s2 = ["dog", "racecar", "car"]
-
-s = Solution()
-
-print(s.longestCommonPrefix(s1))
-print(s.longestCommonPrefix(s2))

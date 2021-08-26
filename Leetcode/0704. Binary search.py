@@ -1,8 +1,3 @@
-# Given an array of integers nums which is sorted in ascending order,
-# and an integer target, write a function to search target in nums.
-# If target exists, then return its index. Otherwise, return -1.
-
-
 class Solution:
     def search(self, nums: list[int], target: int) -> int:
         left, right = 0, len(nums) - 1

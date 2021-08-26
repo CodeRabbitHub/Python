@@ -1,8 +1,3 @@
-# Given the array nums after the rotation and an integer target, return the
-# index of target if it is in nums, or -1 if it is not in nums.
-# You must write an algorithm with O(log n) runtime complexity.
-
-
 class Solution:
     def search(self, nums: list[int], target: int) -> int:
         left = 0
