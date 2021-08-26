@@ -3,15 +3,21 @@ class Solution:
         return sorted(x ** 2 for x in nums)
 
     def sortedSquares2(self, nums: list[int]) -> list[int]:
-        n = len(nums)
-        result = [0] * n
-        left, right = 0, n - 1
-        for i in range(n - 1, -1, -1):
-            if abs(nums[left]) < abs(nums[right]):
-                square = nums[right]
+        if not nums:
+            return []
+
+        result = [0] * len(nums)
+        left = 0
+        right = len(nums) - 1
+        insert_loc = len(nums) - 1
+
+        while left <= right:
+            if abs(nums[left]) <= abs(nums[right]):
+                result[insert_loc] = nums[right] ** 2
+                insert_loc -= 1
                 right -= 1
             else:
-                square = nums[left]
+                result[insert_loc] = nums[left] ** 2
+                insert_loc -= 1
                 left += 1
-            result[i] = square * square
         return result
