@@ -11,12 +11,13 @@ class Solution:
             nums.append(head.val)
             head = head.next
 
-        l, r = 0, len(nums) - 1
-        while l <= r:
-            if nums[l] != nums[r]:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            if nums[left] != nums[right]:
                 return False
-            l += 1
-            r -= 1
+            left += 1
+            right -= 1
+
         return True
 
     def isPalindrome2(self, head):
