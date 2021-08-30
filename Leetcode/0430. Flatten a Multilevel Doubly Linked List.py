@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Node:
     def __init__(self, val, prev, next, child):
         self.val = val
@@ -6,28 +9,49 @@ class Node:
         self.child = child
 
 
+# DFS - Iteration
 class Solution:
     def flatten(self, head: Node) -> Node:
-        if head is not None:
-            self.flatten_rec(head)
-        return head
-
-    def flatten_rec(self, head):
-        curr, tail = head, head
-        while curr is not None:
-            child = curr.child
-            next = curr.next
-            if child is not None:
-                _tail = self.flatten_rec(child)
-                _tail.next = next
-                if next is not None:
-                    next.prev = _tail
-                curr.next = child
-                child.prev = curr
+        if not head:
+            return None
+        pseudoHead = Node(None, None, head, None)
+        stack = deque()
+        stack.append(head)
+        prev = pseudoHead
+        while stack:
+            curr = stack.pop()
+            curr.prev = prev
+            prev.next = curr
+            if curr.next:
+                stack.append(curr.next)
+            if curr.child:
+                stack.append(curr.child)
                 curr.child = None
-                curr = tail
-            else:
-                curr = next
-            if curr is not None:
-                tail = curr
-        return tail
+            prev = curr
+        pseudoHead.next.prev = None
+        return pseudoHead.next
+
+
+# DFS - Recursive
+class Solution:
+    def flatten(self, head):
+        if not head:
+            return head
+
+        pseudoHead = Node(None, None, head, None)
+        self.flatten_dfs(pseudoHead, head)
+
+        pseudoHead.next.prev = None
+        return pseudoHead.next
+
+    def flatten_dfs(self, prev, curr):
+        if not curr:
+            return prev
+
+        curr.prev = prev
+        prev.next = curr
+
+        tempNext = curr.next
+        tail = self.flatten_dfs(curr, curr.child)
+        curr.child = None
+        return self.flatten_dfs(tail, tempNext)

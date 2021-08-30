@@ -8,6 +8,7 @@ class TreeNode:
         self.right = right
 
 
+# BFFS
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
         if root is None:
@@ -24,3 +25,15 @@ class Solution:
                     queue.append(node.right)
             depth += 1
         return depth
+
+
+# Recursion
+class Solution:
+    def maxDepth(self, root):
+        if root is None:
+            return 0
+        else:
+            left_height = self.maxDepth(root.left)
+            right_height = self.maxDepth(root.right)
+
+        return max(left_height, right_height) + 1
