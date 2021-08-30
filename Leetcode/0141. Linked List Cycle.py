@@ -17,8 +17,10 @@ class Solution:
             currNode = currNode.next
         return False
 
+
+class Solution:
     # slow-fast pointer based solution
-    def hasCycle2(self, head: ListNode) -> bool:
+    def hasCycle(self, head: ListNode) -> bool:
         if head is None:
             return False
         slow = head

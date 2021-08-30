@@ -17,8 +17,10 @@ class Solution:
             result = result.next
         return result
 
+
+class Solution:
     # fast and slow pointer
-    def middleNode2(self, head):
+    def middleNode(self, head):
         slow = fast = head
         while fast and fast.next:
             slow = slow.next

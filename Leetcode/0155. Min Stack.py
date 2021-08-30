@@ -21,8 +21,8 @@ class MinStack:
         return self.stack[-1][1]
 
 
-# Two Stacks
 class MinStack:
+    # Two Stack
     def __init__(self):
         self.stack = []
         self.min_stack = []

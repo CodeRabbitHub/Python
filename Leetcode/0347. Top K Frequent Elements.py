@@ -18,5 +18,7 @@ class Solution:
                 if len(res) == k:
                     return res
 
-    def topKFrequent2(self, nums: list[int], k: int) -> list[int]:
+
+class Solution:
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
         return [x for x, y in collections.Counter(nums).most_common(k)]

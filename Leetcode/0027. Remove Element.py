@@ -13,7 +13,9 @@ class Solution:
                 left += 1
         return left
 
-    def removeElement2(self, nums: list[int], val: int) -> int:
+
+class Solution:
+    def removeElement(self, nums: list[int], val: int) -> int:
         index = 0
         for i in range(len(nums)):
             if nums[i] != val:

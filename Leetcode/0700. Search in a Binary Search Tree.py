@@ -15,6 +15,8 @@ class Solution:
         else:
             return self.searchBST(root.right, val)
 
+
+class Solution:
     # Iteration
     def searchBST(self, root: TreeNode, val: int) -> TreeNode:
         while root is not None and root.val != val:

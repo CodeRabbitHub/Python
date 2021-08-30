@@ -14,7 +14,9 @@ class Solution:
                 word.pop()
         return "".join(word)
 
-    def backspaceCompare2(self, S, T):
+
+class Solution:
+    def backspaceCompare(self, S, T):
         def F(S):
             skip = 0
             for x in reversed(S):

@@ -14,6 +14,8 @@ class Solution:
                 right -= 1
         return nums
 
+
+class Solution:
     def sortArrayByParity(self, nums: list[int]) -> list[int]:
         j = 0
         for i in range(len(nums)):

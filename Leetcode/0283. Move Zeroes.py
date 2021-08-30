@@ -12,6 +12,8 @@ class Solution:
             nums[idx] = 0
         return nums
 
+
+class Solution:
     def moveZeroes(self, nums: list[int]) -> None:
         left = 0
         right = len(nums) - 1

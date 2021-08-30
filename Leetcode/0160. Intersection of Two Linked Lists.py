@@ -25,6 +25,8 @@ class Solution:
 
         return None
 
+
+class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
 
         pA = headA

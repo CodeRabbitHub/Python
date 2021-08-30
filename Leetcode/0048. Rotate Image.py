@@ -1,5 +1,5 @@
 class Solution:
-    def rotate(self, matrix: List[List[int]]) -> None:
+    def rotate(self, matrix: list[list[int]]) -> None:
         self.transpose(matrix)
         self.reflect(matrix)
 

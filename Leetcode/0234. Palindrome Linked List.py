@@ -20,7 +20,9 @@ class Solution:
 
         return True
 
-    def isPalindrome2(self, head):
+
+class Solution:
+    def isPalindrome(self, head):
         slow = fast = head
 
         # middle(slow)

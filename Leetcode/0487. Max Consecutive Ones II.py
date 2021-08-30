@@ -12,7 +12,6 @@ class Solution:
                 if nums[left] == 0:
                     zeros_count -= 1
                 left += 1
-
             length = max(length, right - left + 1)
             right += 1
         return length
