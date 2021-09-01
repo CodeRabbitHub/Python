@@ -11,11 +11,11 @@ class TreeNode:
 # BFFS
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
+        depth = 0
         if root is None:
-            return 0
+            return depth
         queue = deque()
         queue.append(root)
-        depth = 0
         while queue:
             for _ in range(len(queue)):
                 node = queue.popleft()
@@ -35,5 +35,4 @@ class Solution:
         else:
             left_height = self.maxDepth(root.left)
             right_height = self.maxDepth(root.right)
-
         return max(left_height, right_height) + 1
