@@ -1,7 +1,9 @@
+from collections import defaultdict
+
+
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: list[list[int]]) -> bool:
-        preMap = {i: [] for i in range(numCourses)}
-
+        preMap = defaultdict(list)
         for crs, pre in prerequisites:
             preMap[crs].append(pre)
 
@@ -14,9 +16,11 @@ class Solution:
                 return True
 
             visitSet.add(crs)
+
             for pre in preMap[crs]:
                 if not dfs(pre):
                     return False
+
             visitSet.remove(crs)
             preMap[crs] = []
             return True
