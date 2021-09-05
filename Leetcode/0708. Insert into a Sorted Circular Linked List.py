@@ -23,14 +23,11 @@ class Solution:
             elif prev.val > curr.val:
                 if insertVal >= prev.val or insertVal <= curr.val:
                     toInsert = True
-
             if toInsert:
                 prev.next = Node(insertVal, curr)
                 return head
-
             prev, curr = curr, curr.next
             if prev == head:
                 break
-
         prev.next = Node(insertVal, curr)
         return head
