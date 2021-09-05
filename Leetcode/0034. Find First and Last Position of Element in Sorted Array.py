@@ -1,33 +1,56 @@
 class Solution:
     def searchRange(self, nums: list[int], target: int) -> list[int]:
+
         if not nums:
             return [-1, -1]
 
-        if len(nums) == 1:
-            return [0, 0] if nums[0] == target else [-1, -1]
+        start, end = 0, len(nums) - 1
 
-        left = 0
-        right = len(nums) - 1
-        while left <= right:
-            mid = (left + right) // 2
+        while start <= end:
+            mid = (start + end) // 2
+
             if nums[mid] == target:
-                return self.boundaries(nums, mid)
-            elif nums[mid] > target:
-                right = mid - 1
+                a = self.first_less(nums, target, start, mid)
+                b = self.last_more(nums, target, mid, end)
+                return [a, b]
+
+            if nums[mid] < target:
+                start = mid + 1
             else:
-                left = mid + 1
+                end = mid - 1
+
         return [-1, -1]
 
-    def boundaries(self, nums, mid):
-        lower_bound, upper_bound = mid, mid
-        while lower_bound > 0:
-            if nums[lower_bound - 1] == nums[mid]:
-                lower_bound -= 1
-            else:
-                break
-        while upper_bound + 1 < len(nums):
-            if nums[upper_bound + 1] == nums[mid]:
-                upper_bound += 1
-            else:
-                break
-        return [lower_bound, upper_bound]
+    def first_less(self, nums, target, start, end):
+
+        if nums[start] == target:
+            return start
+
+        while start <= end:
+            mid = (start + end) // 2
+
+            if nums[mid] == target:
+                end = mid - 1
+            if nums[mid] < target:
+                if nums[mid + 1] == target:
+                    return mid + 1
+                start = mid + 1
+
+        return -1
+
+    def last_more(self, nums, target, start, end):
+
+        if nums[end] == target:
+            return end
+
+        while start <= end:
+            mid = (start + end) // 2
+
+            if nums[mid] == target:
+                if nums[mid + 1] > target:
+                    return mid
+                start = mid + 1
+            if nums[mid] > target:
+                end = mid - 1
+
+        return -1
