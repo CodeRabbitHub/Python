@@ -1,8 +1,6 @@
-from lxml import etree
-from xml.dom import minidom
 import xml.etree.ElementTree as ET
 
-tree = ET.parse('arms1248.xml')
+tree = ET.parse("sample.xml")
 root = tree.getroot()
 
 # We add height and width child to bounding box
@@ -19,6 +17,6 @@ for x in root.iter("object"):
         wh = ET.SubElement(y, "width")
         wh.text = str(width)
 
-        y.set('updated', 'yes')
+        y.set("updated", "yes")
 
 tree.write("newSample.xml")
