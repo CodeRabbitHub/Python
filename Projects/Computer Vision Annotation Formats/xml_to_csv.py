@@ -1,11 +1,11 @@
 """
+--------------------------------------------------------------------------------------------
 DESCRIPTION:
-
-This file takes in .xml files and and combines them into single dataframe
-Then it converts data frame to a .csv file.
-
+This file takes in .xml files and and combines them into single dataframe to a .csv file.
+--------------------------------------------------------------------------------------------
 Usage:
 python xml_to_csv -i [PATH_TO_FOLDER_CONTAINING_XML] -o [PATH_TO_OUTPUT_FOLDER_FOR_CSV_FILE]
+--------------------------------------------------------------------------------------------
 """
 
 import os
@@ -56,26 +56,30 @@ def main():
         "-i",
         "--input_directory",
         help="Path to the folder where the input .xml files are stored",
+        metavar="",
         type=str,
+        required=True,
     )
     parser.add_argument(
         "-o",
-        "--output_file",
-        help="Path to output folder including output .csv file name)",
+        "--output_file_path",
+        help="Path to output .csv file (include name of file)",
+        metavar="",
         type=str,
     )
     args = parser.parse_args()
 
     if not args.input_directory:
         args.input_directory = os.getcwd()
-    if not args.output_file:
-        args.output_file = args.input_directory + "\labels.csv"
+    if not args.output_file_path:
+        args.output_file_path = args.input_directory + "\labels.csv"
 
     assert os.path.isdir(args.input_directory)
 
     xml_df = xml_to_csv(args.input_directory)
-    xml_df.to_csv(args.output_file, index=None)
+    xml_df.to_csv(args.output_file_path, index=None)
     print("Successfully converted xml to csv.")
+    print("Output path", args.output_file_path)
 
 
 if __name__ == "__main__":
