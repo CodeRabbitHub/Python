@@ -4,7 +4,7 @@ DESCRIPTION:
 This file takes in .txt or .csv file and combines and then generates a .pbtxt file output.
 ------------------------------------------------------------------------------------------
 USAGE:
-python generate_pbtxt.py input [PATH_TO_CSV_OR_TXT_FILE] output [PATH_TO_OUTPUT_PBXT_FILE]
+python generate_pbtxt.py -t [csv or txt] -i [PATH_TO_INPUT_FILE] -o [PATH_TO_OUTPUT_FILE]
 ------------------------------------------------------------------------------------------
 """
 
@@ -41,7 +41,7 @@ def pbtxt_from_txt(txt_path: str, pbtxt_path: str):
     pbtxt_from_classlist(data, pbtxt_path)
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         description="creates a .pbtxt file from a .csv ot .txt input file"
     )
@@ -68,8 +68,7 @@ if __name__ == "__main__":
         required=True,
         help="Path where the .pbtxt output will be created (including complete name of the file)",
     )
-    parser.add_argument("-v", "--verbose", action="store_true", help="print verbose")
-    parser.add_argument("-q", "--quiet", action="store_true", help="print quiet")
+
     args = parser.parse_args()
 
     if args.input_type == "csv":
@@ -77,12 +76,10 @@ if __name__ == "__main__":
     elif args.input_type == "txt":
         pbtxt_from_txt(args.input_file, args.output_file)
 
-    if args.verbose:
-        print("Succesfully created .pbtxt file")
-        print("Input file path:", args.input_file)
-        print("Output file path:", args.output_file)
-    elif args.quiet:
-        print("Output file path:", args.output_file)
-    else:
-        print("Succesfully created .pbtxt file")
-        print("Output file path:", args.output_file)
+    print("Succesfully created .pbtxt file")
+    print("Input file path:", args.input_file)
+    print("Output file path:", args.output_file)
+
+
+if __name__ == "__main__":
+    main()

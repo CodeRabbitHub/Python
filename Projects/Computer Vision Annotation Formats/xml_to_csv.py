@@ -16,7 +16,6 @@ import xml.etree.ElementTree as ET
 
 
 def xml_to_csv(path: str) -> pd.DataFrame:
-
     xml_list = []
     for xml_file in glob.glob(path + "/*.xml"):
         tree = ET.parse(xml_file)
@@ -48,7 +47,6 @@ def xml_to_csv(path: str) -> pd.DataFrame:
 
 
 def main():
-
     parser = argparse.ArgumentParser(
         description="XML-to-CSV converter for TF Object Detection API"
     )
@@ -56,7 +54,7 @@ def main():
         "-i",
         "--input_directory",
         help="Path to the folder where the input .xml files are stored",
-        metavar="",
+        metavar="INPUT DIRECTORY PATH",
         type=str,
         required=True,
     )
@@ -64,7 +62,7 @@ def main():
         "-o",
         "--output_file_path",
         help="Path to output .csv file (include name of file)",
-        metavar="",
+        metavar="OUTPUT FILE PATH",
         type=str,
     )
     args = parser.parse_args()
