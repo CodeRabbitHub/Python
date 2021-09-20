@@ -37,7 +37,7 @@ def main():
     args = parser.parse_args()
 
     if args.output_file_path is None:
-        args.output_file_path = args.input_directory / "labels.csv"
+        args.output_file_path = Path(args.input_directory) / "labels.csv"
 
     inputDir = Path(args.input_directory)
     outputDir = Path(args.output_file_path)
@@ -51,18 +51,18 @@ def main():
 def xml_to_csv(inputPath, outputPath):
     xml_list = []
     for xml_file in inputPath.glob("*.xml"):
-        tree = ET.parse(str(xml_file))
+        tree = ET.parse(xml_file)
         root = tree.getroot()
         for member in root.findall("object"):
             value = [
                 root.find("filename").text,
-                int(root.find("size")[0].text),
-                int(root.find("size")[1].text),
-                member[0].text,
-                int(member[4][0].text),
-                int(member[4][1].text),
-                int(member[4][2].text),
-                int(member[4][3].text),
+                int(root.find("size").find("width").text),
+                int(root.find("size").find("height").text),
+                str(member.find("name").text),
+                int(member.find("bndbox").find("xmin").text),
+                int(member.find("bndbox").find("ymin").text),
+                int(member.find("bndbox").find("xmax").text),
+                int(member.find("bndbox").find("ymax").text),
             ]
             xml_list.append(value)
     column_name = [
