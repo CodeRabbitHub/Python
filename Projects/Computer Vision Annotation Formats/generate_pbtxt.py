@@ -13,6 +13,41 @@ import pandas as pd
 from pathlib import Path
 
 
+def pbtxt_from_csv(csv_path, pbtxt_path):
+    class_list = list(pd.read_csv(csv_path)["class"].unique())
+    pbtxt_from_classlist(class_list, pbtxt_path)
+
+
+# def pbtxt_from_txt(txt_path, pbtxt_path):
+#     data = list()
+#     with open(txt_path, "r", encoding="UTF-8") as file:
+#         while line := file.readline().strip():
+#             data.append(line)
+#     pbtxt_from_classlist(data, pbtxt_path)
+
+
+def pbtxt_from_txt(txt_path, pbtxt_path):
+    data = [l.strip() for l in open(txt_path, "r", encoding="utf-8-sig")]
+    data = [l for l in data if len(l) > 0]
+    pbtxt_from_classlist(data, pbtxt_path)
+
+
+def pbtxt_from_classlist(class_list: list, pbtxt_path):
+    pbtxt_text = ""
+
+    for i, c in enumerate(class_list):
+        pbtxt_text += (
+            "item {\n    id: "
+            + str(i + 1)
+            + '\n    display_name: "'
+            + str(c)
+            + '"\n}\n\n'
+        )
+
+    with open(pbtxt_path, "w+") as pbtxt_file:
+        pbtxt_file.write(pbtxt_text)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="creates a .pbtxt file from a .csv or .txt input file"
@@ -54,45 +89,6 @@ def main():
     print("Succesfully created .pbtxt file")
     print("Input file path:", inputPath)
     print("Output file path:", outputPath)
-
-
-def pbtxt_from_csv(csv_path, pbtxt_path):
-    class_list = list(pd.read_csv(csv_path)["class"].unique())
-    pbtxt_from_classlist(class_list, pbtxt_path)
-
-
-# def pbtxt_from_txt(txt_path, pbtxt_path):
-#     data = list()
-#     with open(txt_path, "r", encoding="UTF-8") as file:
-#         while line := file.readline().strip():
-#             data.append(line)
-#     pbtxt_from_classlist(data, pbtxt_path)
-
-
-def pbtxt_from_txt(txt_path, pbtxt_path):
-    data = list()
-    with open(txt_path, "r", encoding="UTF-8") as file:
-        line = file.readline().strip()
-        while line:
-            data.append(line)
-            line = file.readline().strip
-    pbtxt_from_classlist(data, pbtxt_path)
-
-
-def pbtxt_from_classlist(class_list: list, pbtxt_path):
-    pbtxt_text = ""
-
-    for i, c in enumerate(class_list):
-        pbtxt_text += (
-            "item {\n    id: "
-            + str(i + 1)
-            + '\n    display_name: "'
-            + str(c)
-            + '"\n}\n\n'
-        )
-
-    with open(pbtxt_path, "w+") as pbtxt_file:
-        pbtxt_file.write(pbtxt_text)
 
 
 if __name__ == "__main__":

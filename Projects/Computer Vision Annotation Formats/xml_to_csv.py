@@ -14,40 +14,6 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="XML-to-CSV converter for TF Object Detection API"
-    )
-    parser.add_argument(
-        "-i",
-        "--input_directory",
-        help="Path to the folder where the input .xml files are stored",
-        metavar="INPUT DIRECTORY PATH",
-        default=Path.cwd(),
-        type=str,
-    )
-    parser.add_argument(
-        "-o",
-        "--output_file_path",
-        help="Path to output .csv file (include name of file)",
-        metavar="OUTPUT FILE PATH",
-        default=None,
-        type=str,
-    )
-    args = parser.parse_args()
-
-    if args.output_file_path is None:
-        args.output_file_path = Path(args.input_directory) / "labels.csv"
-
-    inputDir = Path(args.input_directory)
-    outputDir = Path(args.output_file_path)
-
-    assert inputDir.is_dir(), "Input directory doesn't exist"
-    assert outputDir.parent.is_dir(), "Output directory doesn't exist"
-
-    xml_to_csv(inputDir, outputDir)
-
-
 def xml_to_csv(inputPath, outputPath):
     xml_list = []
     for xml_file in inputPath.glob("*.xml"):
@@ -80,6 +46,40 @@ def xml_to_csv(inputPath, outputPath):
 
     print("Successfully converted xml to csv.")
     print("Output path", outputPath)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="XML-to-CSV converter for TF Object Detection API"
+    )
+    parser.add_argument(
+        "-i",
+        "--input_directory",
+        help="Path to the folder where the input .xml files are stored",
+        metavar="INPUT DIRECTORY PATH",
+        default=Path.cwd(),
+        type=str,
+    )
+    parser.add_argument(
+        "-o",
+        "--output_file_path",
+        help="Path to output .csv file (include name of file)",
+        metavar="OUTPUT FILE PATH",
+        default=None,
+        type=str,
+    )
+    args = parser.parse_args()
+
+    if args.output_file_path is None:
+        args.output_file_path = Path(args.input_directory) / "labels.csv"
+
+    inputDir = Path(args.input_directory)
+    outputDir = Path(args.output_file_path)
+
+    assert inputDir.is_dir(), "Input directory doesn't exist"
+    assert outputDir.parent.is_dir(), "Output directory doesn't exist"
+
+    xml_to_csv(inputDir, outputDir)
 
 
 if __name__ == "__main__":

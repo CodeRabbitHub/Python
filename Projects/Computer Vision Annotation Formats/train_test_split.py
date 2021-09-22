@@ -19,6 +19,46 @@ from pathlib import Path
 from shutil import copyfile
 
 
+def train_test_split(source, destination, ratio, copy_xml):
+
+    images = [
+        file.parts[-1]
+        for file in Path.iterdir(source)
+        if file.suffix in [".png", ".jpg", ".jpeg"]
+    ]
+
+    num_images = len(images)
+
+    if num_images == 0:
+        print("No valid images exist in the directory")
+        return
+
+    num_test_images = math.ceil(ratio * num_images)
+
+    test_samples = random.sample(images, num_test_images)
+    train_samples = [sample for sample in images if sample not in test_samples]
+
+    train_dir = destination / "train"
+    test_dir = destination / "test"
+
+    if not Path.exists(train_dir):
+        Path.mkdir(train_dir)
+    if not Path.exists(test_dir):
+        Path.mkdir(test_dir)
+
+    def move_data(samples: list, directory: str):
+        for image in tqdm(samples, ascii=True, desc="Moving"):
+            copyfile(source / image, directory / image)
+            if copy_xml:
+                xml = image.split(".")[0] + ".xml"
+                copyfile(source / xml, directory / xml)
+
+    move_data(train_samples, train_dir)
+    print(f">>> {len(train_samples)} samples were moved to train folder")
+    move_data(test_samples, test_dir)
+    print(f">>> {len(test_samples)} samples were moved to test folder")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Partition dataset of images into training and testing sets",
@@ -66,46 +106,6 @@ def main():
     assert outputDir.is_dir(), "Output directory doesn't exist"
 
     train_test_split(imageDir, outputDir, ratio, copy_xml)
-
-
-def train_test_split(source, destination, ratio, copy_xml):
-
-    images = [
-        file.parts[-1]
-        for file in Path.iterdir(source)
-        if file.suffix in [".png", ".jpg", ".jpeg"]
-    ]
-
-    num_images = len(images)
-
-    if num_images == 0:
-        print("No valid images exist in the directory")
-        return
-
-    num_test_images = math.ceil(ratio * num_images)
-
-    test_samples = random.sample(images, num_test_images)
-    train_samples = [sample for sample in images if sample not in test_samples]
-
-    train_dir = destination / "train"
-    test_dir = destination / "test"
-
-    if not Path.exists(train_dir):
-        Path.mkdir(train_dir)
-    if not Path.exists(test_dir):
-        Path.mkdir(test_dir)
-
-    def move_data(samples: list, directory: str):
-        for image in tqdm(samples, ascii=True, desc="Moving"):
-            copyfile(source / image, directory / image)
-            if copy_xml:
-                xml = image.split(".")[0] + ".xml"
-                copyfile(source / xml, directory / xml)
-
-    move_data(train_samples, train_dir)
-    print(f">>> {len(train_samples)} samples were moved to train folder")
-    move_data(test_samples, test_dir)
-    print(f">>> {len(test_samples)} samples were moved to test folder")
 
 
 if __name__ == "__main__":
