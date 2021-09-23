@@ -36,6 +36,9 @@ def prompt_for_action():
             print("Unknown action!")
 
 
+#############################################################################
+
+
 def prompt_for_product():
     """Prompt the user to select a product.
     We return the code for the selected product, or None if the user

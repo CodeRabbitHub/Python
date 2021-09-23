@@ -1,11 +1,12 @@
 """
---------------------------------------------------------------------------------------------
+Author: Aman Roland
+--------------------------------------------------------------------------------------
 DESCRIPTION:
-This file takes in .xml files and and combines them into single dataframe to a .csv file.
---------------------------------------------------------------------------------------------
+Takes in .xml files and and creates a dataframe and covertes it into .csv file
+--------------------------------------------------------------------------------------
 Usage:
-python xml_to_csv -i [PATH_TO_FOLDER_CONTAINING_XML] -o [PATH_TO_OUTPUT_FOLDER_FOR_CSV_FILE]
---------------------------------------------------------------------------------------------
+python xml_to_csv -i [PATH_TO_FOLDER_CONTAINING_XML] -o [PATH_OF_OUTPUT_CSV_FILE]
+--------------------------------------------------------------------------------------
 """
 
 import argparse
@@ -55,7 +56,7 @@ def main():
     parser.add_argument(
         "-i",
         "--input_directory",
-        help="Path to the folder where the input .xml files are stored",
+        help="Path to the folder where .xml files are located",
         metavar="INPUT DIRECTORY PATH",
         default=Path.cwd(),
         type=str,

@@ -18,6 +18,7 @@ def pbtxt_from_csv(csv_path, pbtxt_path):
     pbtxt_from_classlist(class_list, pbtxt_path)
 
 
+# Python 3.9 and above can use this function
 # def pbtxt_from_txt(txt_path, pbtxt_path):
 #     data = list()
 #     with open(txt_path, "r", encoding="UTF-8") as file:
@@ -37,11 +38,7 @@ def pbtxt_from_classlist(class_list: list, pbtxt_path):
 
     for i, c in enumerate(class_list):
         pbtxt_text += (
-            "item {\n    id: "
-            + str(i + 1)
-            + '\n    display_name: "'
-            + str(c)
-            + '"\n}\n\n'
+            "item {\n    id: " + str(i + 1) + "\n    name: '" + str(c) + "'\n}\n\n"
         )
 
     with open(pbtxt_path, "w+") as pbtxt_file:
