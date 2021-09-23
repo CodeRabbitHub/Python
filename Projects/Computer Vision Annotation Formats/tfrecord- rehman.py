@@ -114,4 +114,4 @@ if __name__ == "__main__":
         writer.write(tf_example.SerializeToString())
 
     writer.close()
-    print(f"Successfully created the TFRecords: {args.path_to_save_tfrecords}")
+    print("Successfully created the TFRecords: {}".format(args.path_to_save_tfrecords))
