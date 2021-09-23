@@ -8,6 +8,7 @@ from object_detection.utils import dataset_util
 from object_detection.utils import label_map_util
 from collections import namedtuple
 import argparse
+from tqdm import tqdm
 
 
 def split(df, group):
@@ -19,10 +20,12 @@ def split(df, group):
     ]
 
 
-def create_tf_example(group, path, category_idx):
-    with tf.io.gfile.GFile(
-        os.path.join(path, "{}".format(group.filename)), "rb"
-    ) as fid:
+def category_idx(row_label):
+    return label_map_dict[row_label]
+
+
+def create_tf_example(group, path):
+    with tf.gfile.GFile(os.path.join(path, "{}".format(group.filename)), "rb") as fid:
         encoded_jpg = fid.read()
     encoded_jpg_io = io.BytesIO(encoded_jpg)
     image = Image.open(encoded_jpg_io)
@@ -38,12 +41,12 @@ def create_tf_example(group, path, category_idx):
     classes = []
 
     for index, row in group.object.iterrows():
-        xmins.append(float(row["xmin"]) / width)
-        xmaxs.append(float(row["xmax"]) / width)
-        ymins.append(float(row["ymin"]) / height)
-        ymaxs.append(float(row["ymax"]) / height)
+        xmins.append(row["xmin"] / width)
+        xmaxs.append(row["xmax"] / width)
+        ymins.append(row["ymin"] / height)
+        ymaxs.append(row["ymax"] / height)
         classes_text.append(row["class"].encode("utf8"))
-        classes.append(category_idx[row["class"]])
+        classes.append(category_idx(row["class"]))
 
     tf_example = tf.train.Example(
         features=tf.train.Features(
@@ -70,48 +73,55 @@ def create_tf_example(group, path, category_idx):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Generating tfrecords from images and csv file"
+        description="Generating TFRecords (.record) from Images and CSV file"
     )
     parser.add_argument(
         "--path_to_images",
         type=str,
-        help="folder that contains images",
-        default="data/train/images",
+        help="folder containing images",
+        metavar="PATH/IMAGE_DIR",
     )
     parser.add_argument(
-        "--path_to_annot",
+        "--path_to_csv",
         type=str,
         help="full path to annotations csv file",
-        default="annotations.csv",
+        metavar="PATH/FILENAME.csv",
     )
     parser.add_argument(
         "--path_to_label_map",
         type=str,
         help="full path to label_map file",
-        default="label_map.pbtxt",
+        metavar="PATH/label_map.pbtxt",
     )
     parser.add_argument(
         "--path_to_save_tfrecords",
         type=str,
-        help="This path is for saving the generated tfrecords",
-        default="data/myrecord.record",
+        help="full path to generated tfrecords",
+        metavar="PATH/FILENAME.record",
     )
+
     args = parser.parse_args()
-
-    csv_path = args.path_to_annot
+    csv_path = args.path_to_csv
     images_path = args.path_to_images
-    print("images path : ", images_path)
-    print("csv path : ", csv_path)
-    print("path to output tfrecords : ", args.path_to_save_tfrecords)
-    label_map_dict = label_map_util.get_label_map_dict(args.path_to_label_map)
-    writer = tf.io.TFRecordWriter(args.path_to_save_tfrecords)
+    label_map_path = args.path_to_label_map
+    tfrecords_path = args.path_to_save_tfrecords
 
+    print("Images path : ", images_path)
+    print("CSV file path : ", csv_path)
+    print("Output TFRecords path : ", tfrecords_path)
+
+    label_map = label_map_util.load_labelmap(label_map_path)
+    label_map_dict = label_map_util.get_label_map_dict(label_map)
+
+    writer = tf.io.TFRecordWriter(tfrecords_path)
     examples = pd.read_csv(csv_path)
     print("Generating tfrecord .... ")
-    grouped = split(examples, "filename")
-    for group in grouped:
-        tf_example = create_tf_example(group, images_path, label_map_dict)
-        writer.write(tf_example.SerializeToString())
 
+    grouped = split(examples, "filename")
+
+    for group in tqdm(grouped, desc="groups"):
+        tf_example = create_tf_example(group, images_path)
+        writer.write(tf_example.SerializeToString())
     writer.close()
-    print("Successfully created the TFRecords: {}".format(args.path_to_save_tfrecords))
+
+    print("Successfully created the TFRecord file: {}".format(tfrecords_path))
