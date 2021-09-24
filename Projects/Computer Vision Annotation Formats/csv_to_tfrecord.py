@@ -1,14 +1,14 @@
-import os
 import io
+import argparse
+from PIL import Image
+from tqdm import tqdm
+from pathlib import Path
+from collections import namedtuple
+
 import pandas as pd
 import tensorflow as tf
-from PIL import Image
-
 from object_detection.utils import dataset_util
 from object_detection.utils import label_map_util
-from collections import namedtuple
-import argparse
-from tqdm import tqdm
 
 
 def split(df, group):
@@ -25,7 +25,7 @@ def category_idx(row_label):
 
 
 def create_tf_example(group, path):
-    with tf.gfile.GFile(os.path.join(path, "{}".format(group.filename)), "rb") as fid:
+    with tf.io.gfile.GFile(path / group.filename, "rb") as fid:
         encoded_jpg = fid.read()
     encoded_jpg_io = io.BytesIO(encoded_jpg)
     image = Image.open(encoded_jpg_io)
@@ -73,42 +73,43 @@ def create_tf_example(group, path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Generating TFRecords (.record) from Images and CSV file"
+        description="Generating TFRecord(.record) from images and csv file."
     )
     parser.add_argument(
+        "-i",
         "--path_to_images",
         type=str,
         help="folder containing images",
         metavar="PATH/IMAGE_DIR",
     )
     parser.add_argument(
+        "-c",
         "--path_to_csv",
         type=str,
         help="full path to annotations csv file",
         metavar="PATH/FILENAME.csv",
     )
     parser.add_argument(
+        "-l",
         "--path_to_label_map",
         type=str,
         help="full path to label_map file",
         metavar="PATH/label_map.pbtxt",
     )
     parser.add_argument(
-        "--path_to_save_tfrecords",
+        "-t",
+        "--path_to_tfrecords",
         type=str,
         help="full path to generated tfrecords",
         metavar="PATH/FILENAME.record",
     )
 
     args = parser.parse_args()
-    csv_path = args.path_to_csv
-    images_path = args.path_to_images
-    label_map_path = args.path_to_label_map
-    tfrecords_path = args.path_to_save_tfrecords
 
-    print("Images path : ", images_path)
-    print("CSV file path : ", csv_path)
-    print("Output TFRecords path : ", tfrecords_path)
+    csv_path = Path(args.path_to_csv)
+    images_path = Path(args.path_to_images)
+    label_map_path = Path(args.path_to_label_map)
+    tfrecords_path = Path(args.path_to_tfrecords)
 
     label_map = label_map_util.load_labelmap(label_map_path)
     label_map_dict = label_map_util.get_label_map_dict(label_map)
@@ -119,9 +120,9 @@ if __name__ == "__main__":
 
     grouped = split(examples, "filename")
 
-    for group in tqdm(grouped, desc="groups"):
+    for group in tqdm(grouped, desc="Progress"):
         tf_example = create_tf_example(group, images_path)
         writer.write(tf_example.SerializeToString())
     writer.close()
 
-    print("Successfully created the TFRecord file: {}".format(tfrecords_path))
+    print(f"Successfully created the TFRecord file: {tfrecords_path}")
