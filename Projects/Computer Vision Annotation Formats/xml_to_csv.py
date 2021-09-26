@@ -46,7 +46,8 @@ def xml_to_csv(inputPath, outputPath):
     xml_df.to_csv(outputPath, index=None)
 
     print("Successfully converted xml to csv.")
-    print("Output path", outputPath)
+    print("Input xml files path : ", inputPath)
+    print("Output csv file path : ", outputPath)
 
 
 def main():

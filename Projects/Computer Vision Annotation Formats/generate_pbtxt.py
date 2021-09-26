@@ -85,8 +85,8 @@ def main():
         pbtxt_from_txt(inputPath, outputPath)
 
     print("Succesfully created .pbtxt file")
-    print("Input file path:", inputPath)
-    print("Output file path:", outputPath)
+    print("Input file path : ", inputPath)
+    print("Output file path : ", outputPath)
 
 
 if __name__ == "__main__":

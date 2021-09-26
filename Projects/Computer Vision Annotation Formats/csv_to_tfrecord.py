@@ -1,8 +1,19 @@
+"""
+----------------------------------------------------------------------------------------------
+DESCRIPTION:
+Takes in input images, .csv file and label_map.pbtxt file to generate TFRecord.
+----------------------------------------------------------------------------------------------
+Usage:
+python xml_to_csv -i [PATH_TO_IMAGE_FOLDER] -c [PATH_TO_CSV_FILE] -l [PATH_TO_LABEL_MAP.pbtxt]
+-t [PATH_TO_TFRECORD_FILE]    
+----------------------------------------------------------------------------------------------
+"""
+
 import io
+import os
 import argparse
 from PIL import Image
 from tqdm import tqdm
-from pathlib import Path
 from collections import namedtuple
 
 import pandas as pd
@@ -25,7 +36,9 @@ def category_idx(row_label):
 
 
 def create_tf_example(group, path):
-    with tf.io.gfile.GFile(path / group.filename, "rb") as fid:
+    with tf.io.gfile.GFile(
+        os.path.join(path, "{}".format(group.filename)), "rb"
+    ) as fid:
         encoded_jpg = fid.read()
     encoded_jpg_io = io.BytesIO(encoded_jpg)
     image = Image.open(encoded_jpg_io)
@@ -106,10 +119,14 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    csv_path = Path(args.path_to_csv)
-    images_path = Path(args.path_to_images)
-    label_map_path = Path(args.path_to_label_map)
-    tfrecords_path = Path(args.path_to_tfrecords)
+    csv_path = args.path_to_csv
+    images_path = args.path_to_images
+    label_map_path = args.path_to_label_map
+    tfrecords_path = args.path_to_tfrecords
+
+    print(f"Images folder path : {images_path}")
+    print(f"Input csv file path : {csv_path}")
+    print(f"label_map.pbtxt file path : {label_map_path}")
 
     label_map = label_map_util.load_labelmap(label_map_path)
     label_map_dict = label_map_util.get_label_map_dict(label_map)
@@ -119,10 +136,9 @@ if __name__ == "__main__":
     print("Generating tfrecord .... ")
 
     grouped = split(examples, "filename")
-
     for group in tqdm(grouped, desc="Progress"):
         tf_example = create_tf_example(group, images_path)
         writer.write(tf_example.SerializeToString())
     writer.close()
 
-    print(f"Successfully created the TFRecord file: {tfrecords_path}")
+    print(f"Successfully created the TFRecord file : {tfrecords_path}")
