@@ -9,4 +9,5 @@ class Solution:
                 w2i = i
             if w1i >= 0 and w2i >= 0:
                 min_so_far = min(min_so_far, abs(w2i - w1i))
+
         return min_so_far
