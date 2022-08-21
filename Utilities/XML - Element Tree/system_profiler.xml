@@ -1,0 +1,17 @@
+<dict>
+	<key>_dataType</key>
+	<string>SPSoftwareDataType</string>
+	<key>_detailLevel</key>
+	<integer>-2</integer>
+	<key>_items</key>
+	<array>
+		<dict>
+			<key>_name</key>
+			<string>os_overview</string>
+			<key>kernel_version</key>
+			<string>darwin 8.11.1</string>
+			<key>os_version</key>
+			<string>Mac OS X 10.4.11 (8S2167)</string>
+		</dict>
+	</array>
+</dict>

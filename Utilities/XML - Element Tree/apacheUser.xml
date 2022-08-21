@@ -1,0 +1,5 @@
+<tomcat-users>
+	<user name="tomcat" password="tomcat" roles="tomcat" />
+	<user name="tomcater" password="tomcat" roles="tomcat" />
+	<user name="tomcateeed" password="tomcat" roles="tomcat" />
+</tomcat-users>
