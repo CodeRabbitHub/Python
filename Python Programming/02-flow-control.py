@@ -55,10 +55,15 @@ for fruit in fruits:
     print(fruit)
 
 # For-Else Loops
-for i in range(3):
-    print(i)
+numbers = [1, 2, 3, 4, 5]
+
+for number in numbers:
+    if number % 2 == 0:
+        print(f"{number} is even")
+        break
 else:
-    print("for loop is finished")
+    print("No even number found")
+
 
 # Nested Loops
 numbers = [1, 2, 3, 4, 5]
