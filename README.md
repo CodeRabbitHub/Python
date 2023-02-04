@@ -4,15 +4,15 @@ Welcome to my journey as a data scientist! This repository contains my progress 
 
 ## Repository Overview
 
-1. **General Python Programming**: A comprehensive collection of tutorials covering the fundamentals of Python programming, such as data types, variables, functions, loops, etc.
+1. **`General Python Programming`**: A comprehensive collection of tutorials covering the fundamentals of Python programming, such as data types, variables, functions, loops, etc.
 
-2. **Data Structures and Algorithms**: A deep dive into the different data structures and algorithms used in computer science, implemented using Python.
+2. **`Data Structures and Algorithms`**: A deep dive into the different data structures and algorithms used in computer science, implemented using Python.
 
-3. **Object Oriented Programming**: An exploration of object-oriented programming in Python, including classes, objects, inheritance, and polymorphism.
+3. **`Object Oriented Programming`**: An exploration of object-oriented programming in Python, including classes, objects, inheritance, and polymorphism.
 
-4. **Leetcode Problems**: Solutions to various problems from Leetcode, a popular platform for preparing for coding interviews.
+4. **`Leetcode Problems`**: Solutions to various problems from Leetcode, a popular platform for preparing for coding interviews.
 
-5. **Projects**: Real-world projects that I've worked on, using Python and its libraries for data analysis, visualization, and machine learning.
+5. **`Projects`**: Real-world projects that I've worked on, using Python and its libraries for data analysis, visualization, and machine learning.
 
 ## Goal
 
