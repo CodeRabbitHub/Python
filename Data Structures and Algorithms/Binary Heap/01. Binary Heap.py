@@ -1,56 +1,74 @@
 class Heap:
     def __init__(self, size):
-        self.customList = (size + 1) * [None]
-        self.heapSize = 0
-        self.maxSize = size + 1
+        """
+        Initialize the custom list and properties of the heap.
+        """
+        self.custom_list = (size + 1) * [None]
+        self.heap_size = 0
+        self.max_size = size + 1
 
 
-def peekofHeap(rootNode):
-    if not rootNode:
+def peek_of_heap(root_node):
+    """
+    Return the first element of the custom list in the root node.
+    """
+    if not root_node:
         return
     else:
-        return rootNode.customList[1]
+        return root_node.custom_list[1]
 
 
-def sizeofHeap(rootNode):
-    if not rootNode:
+def size_of_heap(root_node):
+    """
+    Return the size of the heap.
+    """
+    if not root_node:
         return
     else:
-        return rootNode.heapSize
+        return root_node.heap_size
 
 
-def levelOrderTraversal(rootNode):
-    if not rootNode:
+def level_order_traversal(root_node):
+    """
+    Print all elements of the custom list in the root node.
+    """
+    if not root_node:
         return
     else:
-        for i in range(1, rootNode.heapSize + 1):
-            print(rootNode.customList[i])
+        for i in range(1, root_node.heap_size + 1):
+            print(root_node.custom_list[i])
 
 
-def heapifyTreeInsert(rootNode, index, heapType):
-    parentIndex = int(index / 2)
+def heapify_tree_insert(root_node, index, heap_type):
+    """
+    Recursively swap elements in the custom list to maintain the heap property.
+    """
+    parent_index = int(index / 2)
     if index <= 1:
         return
-    if heapType == "Min":
-        if rootNode.customList[index] < rootNode.customList[parentIndex]:
-            temp = rootNode.customList[index]
-            rootNode.customList[index] = rootNode.customList[parentIndex]
-            rootNode.customList[parentIndex] = temp
-        heapifyTreeInsert(rootNode, parentIndex, heapType)
-    elif heapType == "Max":
-        if rootNode.customList[index] > rootNode.customList[parentIndex]:
-            temp = rootNode.customList[index]
-            rootNode.customList[index] = rootNode.customList[parentIndex]
-            rootNode.customList[parentIndex] = temp
-        heapifyTreeInsert(rootNode, parentIndex, heapType)
+    if heap_type == "Min":
+        if root_node.custom_list[index] < root_node.custom_list[parent_index]:
+            temp = root_node.custom_list[index]
+            root_node.custom_list[index] = root_node.custom_list[parent_index]
+            root_node.custom_list[parent_index] = temp
+        heapify_tree_insert(root_node, parent_index, heap_type)
+    elif heap_type == "Max":
+        if root_node.custom_list[index] > root_node.custom_list[parent_index]:
+            temp = root_node.custom_list[index]
+            root_node.custom_list[index] = root_node.custom_list[parent_index]
+            root_node.custom_list[parent_index] = temp
+        heapify_tree_insert(root_node, parent_index, heap_type)
 
 
-def inserNode(rootNode, nodeValue, heapType):
-    if rootNode.heapSize + 1 == rootNode.maxSize:
+def insert_node(root_node, node_value, heap_type):
+    """
+    Insert a node into the custom list.
+    """
+    if root_node.heap_size + 1 == root_node.max_size:
         return "The Binary Heap is Full"
-    rootNode.customList[rootNode.heapSize + 1] = nodeValue
-    rootNode.heapSize += 1
-    heapifyTreeInsert(rootNode, rootNode.heapSize, heapType)
+    root_node.custom_list[root_node.heap_size + 1] = node_value
+    root_node.heap_size += 1
+    heapify_tree_insert(root_node, root_node.heap_size, heap_type)
     return "The value has been successfully inserted"
 
 
