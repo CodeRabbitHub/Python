@@ -1,70 +1,56 @@
 class TrieNode:
     def __init__(self):
         self.children = {}
-        self.endOfString = False
+        self.end_of_word = False
 
 
 class Trie:
     def __init__(self):
         self.root = TrieNode()
 
-    def insertString(self, word):
-        current = self.root
-        for i in word:
-            ch = i
-            node = current.children.get(ch)
-            if node == None:
-                node = TrieNode()
-                current.children.update({ch: node})
-            current = node
-        current.endOfString = True
-        print("Successfully inserted")
+    def insert(self, word: str) -> None:
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.end_of_word = True
 
-    def searchString(self, word):
-        currentNode = self.root
-        for i in word:
-            node = currentNode.children.get(i)
-            if node == None:
+    def search(self, word: str) -> bool:
+        node = self.root
+        for char in word:
+            if char not in node.children:
                 return False
-            currentNode = node
+            node = node.children[char]
+        return node.end_of_word
 
-        if currentNode.endOfString == True:
-            return True
-        else:
+    def delete(self, word: str) -> None:
+        def _delete(node, word, depth):
+            if not node:
+                return False
+
+            if depth == len(word):
+                if node.end_of_word:
+                    node.end_of_word = False
+                    return len(node.children) == 0
+                return False
+
+            char = word[depth]
+            should_delete_current_node = _delete(
+                node.children.get(char), word, depth + 1
+            )
+
+            if should_delete_current_node:
+                node.children.pop(char)
+                return len(node.children) == 0
+
             return False
 
-
-def deleteString(root, word, index):
-    ch = word[index]
-    currentNode = root.children.get(ch)
-    canThisNodeBeDeleted = False
-
-    if len(currentNode.children) > 1:
-        deleteString(currentNode, word, index + 1)
-        return False
-
-    if index == len(word) - 1:
-        if len(currentNode.children) >= 1:
-            currentNode.endOfString = False
-            return False
-        else:
-            root.children.pop(ch)
-            return True
-
-    if currentNode.endOfString == True:
-        deleteString(currentNode, word, index + 1)
-        return False
-
-    canThisNodeBeDeleted = deleteString(currentNode, word, index + 1)
-    if canThisNodeBeDeleted == True:
-        root.children.pop(ch)
-        return True
-    else:
-        return False
+        _delete(self.root, word, 0)
 
 
-newTrie = Trie()
-newTrie.insertString("App")
-newTrie.insertString("Appl")
-deleteString(newTrie.root, "App", 0)
-print(newTrie.searchString("App"))
+trie = Trie()
+trie.insert("App")
+trie.insert("Appl")
+trie.delete("App")
+print(trie.search("App"))  # prints False

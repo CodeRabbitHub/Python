@@ -1,0 +1,11 @@
+A stack and a queue are both linear data structures that store elements in a linear fashion, but they differ in the order in which elements are stored and retrieved.
+
+A stack is a last-in, first-out (LIFO) data structure. This means that the last element added to the stack will be the first one to be removed. The basic operations that can be performed on a stack are push, which adds an element to the top of the stack, and pop, which removes the element from the top of the stack.
+
+A queue is a first-in, first-out (FIFO) data structure. This means that the first element added to the queue will be the first one to be removed. The basic operations that can be performed on a queue are enqueue, which adds an element to the end of the queue, and dequeue, which removes the element from the front of the queue.
+
+Stacks are useful for solving problems that have a natural LIFO behavior, such as parsing, backtracking, and undo operations. They are also used in algorithms such as depth-first search and the evaluation of expressions in reverse Polish notation (RPN).
+
+Queues are useful for solving problems that have a natural FIFO behavior, such as simulation and modeling, scheduling, and breadth-first search. They are also used in algorithms such as the breadth-first search and shortest path algorithms.
+
+Both stacks and queues can be implemented using arrays or linked lists, and the choice of implementation will depend on the requirements of the specific application.

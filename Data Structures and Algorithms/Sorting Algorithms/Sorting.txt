@@ -1,0 +1,17 @@
+Sorting algorithms are algorithms that arrange elements of a collection in a certain order, such as increasing or decreasing order. Some of the most common sorting algorithms are:
+
+Bubble Sort: Bubble sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The algorithm gets its name from the way smaller elements "bubble" to the top of the list.
+
+Selection Sort: Selection sort is a simple sorting algorithm that works by dividing the input into two parts: the sorted part at the left end and the unsorted part to the right. The algorithm repeatedly selects the minimum element from the unsorted part and swaps it with the leftmost element, moving the boundary of the sorted part one step to the right.
+
+Insertion Sort: Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
+
+Quick Sort: Quick sort is a divide-and-conquer algorithm that works by selecting a "pivot" element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively.
+
+Merge Sort: Merge sort is a divide-and-conquer algorithm that works by dividing the unsorted list into n sub-lists, each containing one element, and then repeatedly merging sub-lists to produce new, sorted sub-lists until there is only one sub-list remaining.
+
+Heap Sort: Heap sort is a comparison-based sorting algorithm that works by dividing its input into a sorted and an unsorted region, and iteratively shrinking the unsorted region by extracting the largest element and moving that to the sorted region.
+
+Bucket sort: Bucket sort is a sorting algorithm that is used to sort elements that have a natural ordering, such as numbers. The basic idea behind bucket sort is to divide the input elements into "buckets" based on their value, and then sort the elements within each bucket.
+
+The choice of sorting algorithm will depend on the specific requirements of the application, such as the size of the data set and the desired time and space complexity. Some sorting algorithms are more efficient for small data sets, while others are better suited for large data sets, and some are more efficient for nearly sorted data, while others work better for data with many elements out of order.

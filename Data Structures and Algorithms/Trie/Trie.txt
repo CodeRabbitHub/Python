@@ -1,0 +1,13 @@
+A Trie, also known as a prefix tree, is a tree-based data structure used to store a collection of strings, where each node in the tree represents a single character in a string. The name "Trie" comes from the word "Retrieval", as the Trie data structure is optimized for retrieving strings that match a given prefix.
+
+A Trie is constructed by adding each string in the collection to the tree, one character at a time. Each node in the Trie represents a single character in a string, and the edges between nodes represent the transitions from one character to the next in a string. If a string is added to the Trie, its characters will form a path from the root node to a leaf node.
+
+The Trie data structure has several useful properties:
+
+The Trie allows you to quickly find the presence or absence of a string in the collection. You can do this by starting at the root node and following the edges corresponding to the characters in the string. If you reach a leaf node, the string is present in the collection, and if you reach a null node (a node with no children), the string is not present.
+
+The Trie allows you to efficiently search for all strings that match a given prefix. For example, if you search for the prefix "ca", you can start at the root node and follow the edges corresponding to the characters "c" and "a". All the strings that match the prefix "ca" will be the descendants of the node reached at the end of the prefix.
+
+The Trie allows you to efficiently find all strings in the collection that start with a given string. You can do this by following the path in the Trie corresponding to the string.
+
+The Trie data structure is widely used in many applications, such as spelling correction, autocompletion, IP routing, and more.

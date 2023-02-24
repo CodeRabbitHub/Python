@@ -1,0 +1,9 @@
+A binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child.
+
+In a binary tree, the topmost node is called the root, and the elements below it are child nodes. If a node has no children, it's referred to as a leaf node.
+
+Each node in a binary tree has a value, and the left child node has a value less than its parent node and the right child node has a value greater than its parent node. This property makes binary trees particularly useful for searching and sorting algorithms.
+
+Binary trees can be used to implement various data structures such as binary search trees, heaps, and trie. These data structures are used in many algorithms and applications, such as searching, sorting, and graph algorithms.
+
+For example, in a binary search tree, you can search for a particular value by starting at the root node and comparing the value you're looking for with the value of the node you're currently at. If the value you're looking for is less than the current node's value, you can move to the left child node, and if the value is greater, you can move to the right child node. You repeat this process until you find the value you're looking for or you determine that the value doesn't exist in the tree.
