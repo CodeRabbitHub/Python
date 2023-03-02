@@ -215,10 +215,6 @@ class GameOptionManager:
 
     Attributes:
     -----------
-    game_instance: Game
-        An instance of the Game class.
-    player_instance: Players
-        An instance of the Players class.
     player_manager_instance: PlayerManager
         An instance of the PlayerManager class.
 
@@ -236,8 +232,6 @@ class GameOptionManager:
 
     def __init__(
         self,
-        game_instance: Game,
-        player_instance: Players,
         player_manager_instance: PlayerManager,
     ) -> None:
         """
@@ -245,15 +239,9 @@ class GameOptionManager:
 
         Parameters:
         -----------
-        game_instance: Game
-            An instance of the Game class.
-        player_instance: Players
-            An instance of the Players class.
         player_manager_instance: PlayerManager
             An instance of the PlayerManager class.
         """
-        self.game = game_instance
-        self.players = player_instance
         self.player_manager = player_manager_instance
 
     def start_game(self) -> None:
@@ -275,7 +263,7 @@ class GameOptionManager:
             if game_start_response == "yes":
                 return self.player_manager.shuffle_players()
             elif game_start_response == "no":
-                if GameOptionManager.exit_game():
+                if self.exit_game():
                     quit()
                 else:
                     continue

@@ -25,7 +25,7 @@ if __name__ == "__main__":
         while True:
             # Create game instances and game options
             game = Game()
-            game_option = GameOptionManager(game, players, player_manager)
+            game_option = GameOptionManager(player_manager)
             # Start the game
             game_option.start_game()
             # Shuffle players and get their mark colors and marks

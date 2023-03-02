@@ -112,17 +112,16 @@ class Game:
 
         return False
 
+    def check_tie(self) -> bool:
+        """
+        Check if the game has ended in a tie.
 
-def check_tie(self) -> bool:
-    """
-    Check if the game has ended in a tie.
+        Returns:
+            bool: True if the game has ended in a tie, False otherwise.
+        """
+        for row in range(3):
+            for col in range(3):
+                if self.board[row][col][0] == " ":
+                    return False
 
-    Returns:
-        bool: True if the game has ended in a tie, False otherwise.
-    """
-    for row in range(3):
-        for col in range(3):
-            if self.board[row][col][0] == " ":
-                return False
-
-    return True
+        return True
