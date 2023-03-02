@@ -15,7 +15,7 @@ class IntroDisplay:
         rules (list): A list of strings containing the game rules.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initialize a GameDisplay object.
 
@@ -52,7 +52,7 @@ class IntroDisplay:
             "  + The game ends when all 9 squares on the board have been filled. If neither player has 3 marks in a row, the game results in a tie.",
         ]
 
-    def show_game_intro(self):
+    def show_game_intro(self) -> None:
         """
         Displays the game banner and a message indicating the start of the game.
 
@@ -67,7 +67,7 @@ class IntroDisplay:
         console.print("Let the Fun begins. :alien:", style="green")
         console.print("\n")
 
-    def explain_game_rules(self):
+    def explain_game_rules(self) -> None:
         """
         Displays the game rules section with a title and a list of rules.
 
@@ -115,7 +115,7 @@ class GameDisplay:
         self.game = game_instance
         self.players = players_instance
 
-    def display_board(self, round: int):
+    def display_board(self, round: int) -> None:
         """
         Display the current state of the game board.
 
@@ -167,7 +167,7 @@ class GameDisplay:
         # Print a newline at the end
         console.print("\n")
 
-    def display_scores(self):
+    def display_scores(self) -> None:
         """
         Print the scores of the two players in a console-friendly format.
 

@@ -7,7 +7,7 @@ from utils import console
 class Players:
     """Represents the players in a game."""
 
-    def __init__(self, num_players: int = 2):
+    def __init__(self, num_players: int = 2) -> None:
         """
         Initializes a new instance of the Players class.
 
@@ -25,7 +25,7 @@ class Players:
 class Game:
     """Represents a game of Tic Tac Toe."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes a new instance of the Game class.
 
