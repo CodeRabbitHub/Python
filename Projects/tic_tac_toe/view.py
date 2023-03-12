@@ -62,9 +62,9 @@ class IntroDisplay:
         Returns:
         None.
         """
-        console.print(self.banner, style="bold rgb(48,227,223) blink")
+        console.print(self.banner, style="bold rgb(255,0,0) blink")
         console.print("\n")
-        console.print("Let the Fun begins. :alien:", style="green")
+        console.print("Let the Fun begins. :alien:", style="rgb(0,255,0)")
         console.print("\n")
 
     def explain_game_rules(self) -> None:
@@ -134,7 +134,7 @@ class GameDisplay:
         # Clear the console
         subprocess.run(["cls" if sys.platform == "win32" else "clear"], shell=True)
         # Print the round number in bold yellow underline
-        console.print(f"GAME ROUND {round}\n", style="bold dark_orange underline")
+        console.print(f"GAME ROUND {round}\n", style="bold rgb(255,132,0) underline")
         # Loop through the rows of the board
         for i in range(3):
             # Loop through the columns of the board
@@ -177,15 +177,16 @@ class GameDisplay:
         Returns:
         None.
         """
+        player1, player2 = self.players.player_names
         console.print(
             Text("SCORES:", style="green"),
             Text(
-                f"{self.players.player_names[0]}-{self.players.player_scores[0]}",
-                style=self.players.player_colors[0],
+                f"{player1}-{self.players.player_scores[player1]}",
+                style=self.players.player_colors[player1],
             ),
             Text("AND", style="green"),
             Text(
-                f"{self.players.player_names[1]}-{self.players.player_scores[1]}",
-                style=self.players.player_colors[1],
+                f"{player2}-{self.players.player_scores[player2]}",
+                style=self.players.player_colors[player2],
             ),
         )

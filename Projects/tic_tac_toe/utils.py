@@ -8,30 +8,28 @@ console = Console()
 
 class GameTools:
     @staticmethod
-    def generate_colors(number=2) -> List[str]:
+    def generate_colors() -> List[str]:
         """
-        Generates a list of specified number of random colors in RGB format
+        Returns a list of `number` random colors in RGB format from an electric neon color palette.
 
-        Parameters:
-        number (int, optional): number of colors to generate, default is 2
+        Args:
+            number (int): The number of colors to generate. Default is 2.
 
         Returns:
-        List[str]: List of RGB colors in string format
+            List[str]: A list of `number` colors in RGB format.
 
         Example:
-        >>> generate_colors(3)
-        ['rgb(200, 130, 120)', 'rgb(50, 60, 70)', 'rgb(10, 20, 30)']
+            >>> GameTools.generate_colors(3)
+            ['rgb(255,0,255)', 'rgb(255,255,0)', 'rgb(0,255,0)']
         """
-        colors = []
-        for _ in range(number):
-            h, s, l = (
-                random.random(),
-                0.5 + random.random() / 2.0,
-                0.4 + random.random() / 5.0,
-            )
-            r, g, b = [int(256 * i) for i in colorsys.hls_to_rgb(h, l, s)]
-            colors.append(str(f"rgb({r},{g},{b})"))
-        return colors
+        electric_neon_color_palette = [
+            "rgb(255,0,0)",
+            "rgb(255,255,0)",
+            "rgb(0,255,255)",
+            "rgb(255,0,255)",
+        ]
+        random.shuffle(electric_neon_color_palette)
+        return electric_neon_color_palette[:2]
 
     @staticmethod
     def animate_shuffle(num_of_rolls=2) -> None:
