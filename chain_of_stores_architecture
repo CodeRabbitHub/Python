@@ -1,0 +1,51 @@
+digraph "Chain of Stores Architecture" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="Chain of Stores Architecture" nodesep=0.60 pad=2.0 rankdir=TB ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	"341631028f9c42dc8cf442942c145f4f" -> b942f0ba570141d19d7e0f960c704ab3 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	b942f0ba570141d19d7e0f960c704ab3 -> eea327ce7e264141b018c4c24874d291 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"565888f6ee4542b2b774c0fcc49a5c54" -> eea327ce7e264141b018c4c24874d291 [dir=none fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph "cluster_Data Ingestion and Storage" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Data Ingestion and Storage" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"341631028f9c42dc8cf442942c145f4f" [label="Stores Data" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/analytics\kinesis-data-streams.png" shape=none]
+		b942f0ba570141d19d7e0f960c704ab3 [label=Firehose height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/analytics\kinesis-data-firehose.png" shape=none]
+		eea327ce7e264141b018c4c24874d291 [label="Amazon S3" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/storage\simple-storage-service-s3.png" shape=none]
+		"565888f6ee4542b2b774c0fcc49a5c54" [label="Amazon RDS (MySQL or PostgreSQL)" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/database\rds.png" shape=none]
+	}
+	subgraph "cluster_Data Processing and Analytics" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Data Processing and Analytics" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		ea8a7228793f447d8f631052fe0d7e07 [label="Amazon EMR" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/analytics\emr.png" shape=none]
+		"9508edff7d5343969fa566d93fc0e892" [label="Amazon Redshift" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/analytics\redshift.png" shape=none]
+	}
+	subgraph "cluster_Data Visualization and BI" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Data Visualization and BI" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"8d0bb6a61a7246558799f88d4680e638" [label="Amazon QuickSight" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/analytics\quicksight.png" shape=none]
+	}
+	subgraph "cluster_Data Science" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Data Science" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"0df93d56cdcc4d9ab7dcddf82d18b89f" [label="Amazon SageMaker" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/ml\sagemaker.png" shape=none]
+	}
+	subgraph "cluster_Connectivity and Orchestration" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Connectivity and Orchestration" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		c3578f7dfc4f4748bf110d952fbc3b89 [label="AWS Lambda" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/compute\lambda.png" shape=none]
+	}
+	subgraph "cluster_Security and Governance" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Security and Governance" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"63badc7d74ad42feb5698404b4b3e6e1" [label="AWS IAM" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/security\identity-and-access-management-iam.png" shape=none]
+		eea4b6386ebf42cda3b615b90be6172c [label="AWS KMS" height=1.9 image="C:\Users\amanr\anaconda3\lib\site-packages\resources/aws/security\key-management-service.png" shape=none]
+	}
+	eea327ce7e264141b018c4c24874d291 -> ea8a7228793f447d8f631052fe0d7e07 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	eea327ce7e264141b018c4c24874d291 -> "8d0bb6a61a7246558799f88d4680e638" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	eea327ce7e264141b018c4c24874d291 -> "0df93d56cdcc4d9ab7dcddf82d18b89f" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	eea327ce7e264141b018c4c24874d291 -> "565888f6ee4542b2b774c0fcc49a5c54" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	b942f0ba570141d19d7e0f960c704ab3 -> eea327ce7e264141b018c4c24874d291 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"341631028f9c42dc8cf442942c145f4f" -> b942f0ba570141d19d7e0f960c704ab3 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	ea8a7228793f447d8f631052fe0d7e07 -> "9508edff7d5343969fa566d93fc0e892" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"8d0bb6a61a7246558799f88d4680e638" -> "9508edff7d5343969fa566d93fc0e892" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"565888f6ee4542b2b774c0fcc49a5c54" -> "8d0bb6a61a7246558799f88d4680e638" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"9508edff7d5343969fa566d93fc0e892" -> "8d0bb6a61a7246558799f88d4680e638" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	c3578f7dfc4f4748bf110d952fbc3b89 -> "341631028f9c42dc8cf442942c145f4f" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"341631028f9c42dc8cf442942c145f4f" -> c3578f7dfc4f4748bf110d952fbc3b89 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"63badc7d74ad42feb5698404b4b3e6e1" -> eea327ce7e264141b018c4c24874d291 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	eea4b6386ebf42cda3b615b90be6172c -> eea327ce7e264141b018c4c24874d291 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}
