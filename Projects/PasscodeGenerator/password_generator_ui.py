@@ -145,3 +145,27 @@ if __name__ == "__main__":
     sys.exit(
         app.exec_()
     )  # Start the event loop and exit the application when it's done
+
+# Steps to create a simple exe file for windows
+
+# Create a virtual environment (venv) to isolate the project's dependencies.
+# Run this command in your terminal or command prompt to create a virtual environment named "venv":
+# python -m venv venv
+
+# Activate the virtual environment.
+# After creating the virtual environment, activate it using this command:
+# On Windows:
+# venv\Scripts\activate
+
+# Install the required dependencies into the virtual environment.
+# You need to install PyQt5 and PyInstaller in your virtual environment.
+# Use this command to install the dependencies:
+# pip install PyQt5 pyinstaller
+
+# Generate the standalone executable using PyInstaller.
+# This command will package your PyQt5 application script (password_generator_ui.py)
+# into a single executable file. It will also include the necessary PyQt5 binaries
+# and disable the console window when the executable is run.
+# Replace the path to the PyQt5 binaries with the actual path on your system.
+# Run this command in your terminal or command prompt:
+# pyinstaller --onefile --add-binary "C:\Path\PasscodeGenerator\venv\Lib\site-packages\PyQt5\Qt5\bin\*;\Qt5\bin" --noconsole password_generator_ui.py
